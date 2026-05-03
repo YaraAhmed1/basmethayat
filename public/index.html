@@ -16,26 +16,26 @@
    DESIGN TOKENS & RESET
    ==================================================== */
 :root {
-  --sage:       #7BAE8E;
-  --sage-light: #E8F4EE;
-  --sage-dark:  #4A7A5E;
-  --blush:      #E8A598;
-  --blush-light:#FDF0EE;
-  --gold:       #C9A96E;
-  --gold-light: #FBF3E6;
+  --sage:       #2E8B57;
+  --sage-light: #E0F4EB;
+  --sage-dark:  #1B5E38;
+  --blush:      #D4A017;
+  --blush-light:#FDF6DC;
+  --gold:       #C9960A;
+  --gold-light: #FBF4D6;
   --sky:        #7BAED1;
   --sky-light:  #EBF4FB;
   --lavender:   #9B8FBF;
   --lav-light:  #F0EEF8;
-  --cream:      #FAF7F2;
+  --cream:      #F7FBF8;
   --white:      #FFFFFF;
-  --ink:        #2C2C3A;
-  --ink-mid:    #5A5A6E;
-  --ink-soft:   #9898AA;
-  --border:     rgba(44,44,58,0.08);
-  --shadow-sm:  0 2px 12px rgba(44,44,58,0.06);
-  --shadow-md:  0 8px 32px rgba(44,44,58,0.10);
-  --shadow-lg:  0 24px 64px rgba(44,44,58,0.14);
+  --ink:        #1A2E22;
+  --ink-mid:    #4A6355;
+  --ink-soft:   #8AA898;
+  --border:     rgba(30,90,55,0.10);
+  --shadow-sm:  0 2px 12px rgba(30,90,55,0.08);
+  --shadow-md:  0 8px 32px rgba(30,90,55,0.12);
+  --shadow-lg:  0 24px 64px rgba(30,90,55,0.16);
   --r-sm:       12px;
   --r-md:       20px;
   --r-lg:       32px;
@@ -385,7 +385,7 @@ nav.scrolled{padding:10px 60px;box-shadow:var(--shadow-sm)}
 .hero{
   min-height:100vh;padding:120px 60px 80px;
   display:flex;align-items:center;
-  background:linear-gradient(145deg,#F0F7F3 0%,#FDF5EE 50%,#F3EFF9 100%);
+  background:linear-gradient(145deg,#E8F5EE 0%,#FDF8E3 50%,#EAF4ED 100%);
   position:relative;overflow:hidden;
 }
 .hero::before{
@@ -2457,7 +2457,7 @@ footer{
     <div class="cart-summary" id="cartSummary"></div>
     <button class="cart-btn-print" onclick="openPrintModal()">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
-      طباعة خطة الأنشطة
+      🛒 شراء الحقائب المختارة
     </button>
     <button class="cart-btn-clear" onclick="clearCart()">🗑️ إفراغ السلة</button>
   </div>
@@ -2472,7 +2472,7 @@ footer{
     </div>
     <div class="print-modal-body" id="printModalBody"></div>
     <div class="print-modal-footer">
-      <button class="print-btn-do" onclick="doPrint()">🖨️ طباعة الخطة</button>
+      <button class="print-btn-do" onclick="doPrint()">🛒 إتمام الشراء</button>
       <button class="print-btn-cancel" onclick="closePrintModal()">إغلاق</button>
     </div>
   </div>
@@ -3410,23 +3410,35 @@ const RESEARCH_DATA = [
 ];
 
 const SUPERVISORS_DATA = [
-  {emoji:'👨‍🏫', name:'أ.د. محمد السيد خاطر', title:'أستاذ التربية الخاصة، كلية التربية — جامعة بنها', contacts:[{type:'email',val:'m.khater@bsu.edu.eg'},{type:'phone',val:'01001234567'}]},
-  {emoji:'👩‍🏫', name:'د. هبة الله فتحي', title:'مدرس التربية الخاصة، قسم علم النفس والصحة النفسية', contacts:[{type:'email',val:'h.fathy@bsu.edu.eg'},{type:'wa',val:'01112345678'}]},
-  {emoji:'👨‍🔬', name:'د. محمود عبد الرحمن', title:'مدرس مناهج وطرق تدريس ذوي الاحتياجات الخاصة', contacts:[{type:'email',val:'m.abdelrahman@bsu.edu.eg'},{type:'phone',val:'01056789012'}]}
+  {emoji:'👩‍🏫', name:'أ.د. أمل عبيد مصطفى', title:'منسق برنامج إعداد معلم ذوي الاحتياجات الخاصة في الطفولة المبكرة', contacts:[]},
+  {emoji:'👩‍🏫', name:'أ.م.د. جيهان كمال', title:'أستاذ مناهج الطفل المساعد بقسم الطفولة المبكرة والتربية', contacts:[]},
+  {emoji:'👩‍🔬', name:'د. سارة أشرف', title:'مدرس بقسم الطفولة المبكرة والتربية', contacts:[]},
+  {emoji:'👩‍🔬', name:'د. رباب مرزوق', title:'مدرس بقسم الطفولة المبكرة والتربية', contacts:[]}
 ];
 const MEMBERS_DATA = [
-  {emoji:'👩', name:'يارا أحمد محمد', role:'مسؤولة الحقيبة الأولى', contacts:['wa','email']},
-  {emoji:'👦', name:'كريم عصام', role:'تصميم الأنشطة الحركية', contacts:['email']},
-  {emoji:'👩', name:'نور محمد علي', role:'مسؤولة الحقيبة الثانية', contacts:['wa','email']},
-  {emoji:'👦', name:'عمر حسن', role:'البحث والتوثيق', contacts:['email']},
-  {emoji:'👩', name:'دينا سامي', role:'تصميم الوسائل البصرية', contacts:['wa']},
-  {emoji:'👦', name:'أحمد فتحي', role:'تنسيق الفريق والتواصل', contacts:['wa','email']},
-  {emoji:'👩', name:'ميار رضا', role:'أنشطة التواصل اللغوي', contacts:['email']},
-  {emoji:'👦', name:'علي خالد', role:'التصوير والتوثيق المرئي', contacts:['wa']},
-  {emoji:'👩', name:'سلمى طارق', role:'قياس وتقييم الأداء', contacts:['email']},
-  {emoji:'👦', name:'زياد محمود', role:'التطوير التقني', contacts:['wa','email']},
-  {emoji:'👩', name:'روان أسامة', role:'أنشطة الفن والإبداع', contacts:['email']},
-  {emoji:'👦', name:'مصطفى عادل', role:'إدارة الموقع الإلكتروني', contacts:['wa','email']}
+  {emoji:'👩', name:'صفوت اسماء  ', role:'عضو الفريق', contacts:[]},
+  {emoji:'👩', name:'آلاء أحمد صلاح', role:'عضو الفريق', contacts:[]},
+  {emoji:'👩', name:'أمل السيد إبراهيم', role:'عضو الفريق', contacts:[]},
+  {emoji:'👩', name:'آية محمود شعبان', role:'عضو الفريق', contacts:[]},
+  {emoji:'👩', name:'آية محمود الحسيني', role:'عضو الفريق', contacts:[]},
+  {emoji:'👩', name:'حياة نور صلاح', role:'عضو الفريق', contacts:[]},
+  {emoji:'👩', name:'خلود إسلام رمضان', role:'عضو الفريق', contacts:[]},
+  {emoji:'👩', name:'دولت رمضان عبدالظاهر', role:'عضو الفريق', contacts:[]},
+  {emoji:'👩', name:'رحمة أحمد عبدالحميد', role:'عضو الفريق', contacts:[]},
+  {emoji:'👩', name:'زينب عادل محمد', role:'عضو الفريق', contacts:[]},
+  {emoji:'👩', name:'سما مصطفى عبدالرازق', role:'عضو الفريق', contacts:[]},
+  {emoji:'👩', name:'سهيلة أحمد محمد', role:'عضو الفريق', contacts:[]},
+  {emoji:'👩', name:'شروق محمد سامي', role:'عضو الفريق', contacts:[]},
+  {emoji:'👩', name:'شمس محمد سامي', role:'عضو الفريق', contacts:[]},
+  {emoji:'👩', name:'شهد هيثم وحيد', role:'عضو الفريق', contacts:[]},
+  {emoji:'👦', name:'عبدالله هاني عبدالظاهر', role:'عضو الفريق', contacts:[]},
+  {emoji:'👩', name:'مريم أحمد الحنفي', role:'عضو الفريق', contacts:[]},
+  {emoji:'👩', name:'ملك عبد الحليم صلاح', role:'عضو الفريق', contacts:[]},
+  {emoji:'👩', name:'ملك موسى شهوان', role:'عضو الفريق', contacts:[]},
+  {emoji:'👩', name:'ميري سعد عريان', role:'عضو الفريق', contacts:[]},
+  {emoji:'👩', name:'ندى أمير صبحي', role:'عضو الفريق', contacts:[]},
+  {emoji:'👩', name:'هاجر أحمد عبدالسميع', role:'عضو الفريق', contacts:[]},
+  {emoji:'👩', name:'هالة مصطفى محمد', role:'عضو الفريق', contacts:[]}
 ];
 
 
