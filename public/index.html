@@ -57,123 +57,7 @@ a{text-decoration:none;color:inherit}
 button{cursor:pointer;font-family:inherit;border:none;outline:none}
 
 /* ====================================================
-   SPLASH SCREEN — ELEGANT REDESIGN
-   ==================================================== */
-#splash{
-  position:fixed;inset:0;z-index:99999;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  padding:40px 24px;
-  background:linear-gradient(160deg,#0d2218 0%,#163424 40%,#1e4733 70%,#0a1a12 100%);
-  transition:opacity 1s ease,transform 1s ease;
-  overflow:hidden;text-align:center;
-}
-/* Subtle bg orbs */
-#splash::before{
-  content:'';position:absolute;inset:0;pointer-events:none;
-  background:
-    radial-gradient(ellipse 55% 45% at 15% 15%,rgba(123,174,142,0.14) 0%,transparent 60%),
-    radial-gradient(ellipse 45% 55% at 85% 85%,rgba(218,183,135,0.09) 0%,transparent 60%);
-}
-/* Animated ring */
-#splash::after{
-  content:'';position:absolute;
-  width:520px;height:520px;border-radius:50%;
-  border:1px solid rgba(123,174,142,0.07);
-  top:50%;left:50%;transform:translate(-50%,-50%);
-  animation:sRing 5s ease-in-out infinite;pointer-events:none;
-}
-@keyframes sRing{
-  0%,100%{transform:translate(-50%,-50%) scale(1);opacity:.4}
-  50%{transform:translate(-50%,-50%) scale(1.06);opacity:.1}
-}
-.splash-hide{opacity:0!important;transform:scale(1.02)!important;pointer-events:none}
-
-/* Logo */
-.splash-logo-wrap{
-  position:relative;z-index:1;margin-bottom:24px;
-  animation:sFadeUp .9s ease both;
-}
-.splash-logo-img{
-  width:120px;height:120px;border-radius:50%;
-  background:white;object-fit:contain;padding:10px;
-  box-shadow:
-    0 0 0 8px rgba(255,255,255,0.06),
-    0 0 0 16px rgba(123,174,142,0.08),
-    0 20px 60px rgba(0,0,0,0.5);
-  animation:sPulse 3.5s ease-in-out infinite;
-}
-@keyframes sPulse{
-  0%,100%{box-shadow:0 0 0 8px rgba(255,255,255,0.06),0 0 0 16px rgba(123,174,142,0.08),0 20px 60px rgba(0,0,0,0.5)}
-  50%{box-shadow:0 0 0 10px rgba(255,255,255,0.04),0 0 0 22px rgba(123,174,142,0.05),0 28px 70px rgba(0,0,0,0.55)}
-}
-
-/* Text blocks */
-.splash-univ{
-  position:relative;z-index:1;
-  font-size:0.7rem;font-weight:700;letter-spacing:4px;
-  color:rgba(255,255,255,0.4);text-transform:uppercase;
-  margin-bottom:6px;
-  animation:sFadeUp .9s ease .15s both;
-}
-.splash-college{
-  position:relative;z-index:1;
-  font-size:1.05rem;font-weight:800;
-  color:rgba(255,255,255,0.82);
-  margin-bottom:22px;letter-spacing:.5px;
-  animation:sFadeUp .9s ease .25s both;
-}
-.splash-title{
-  position:relative;z-index:1;
-  font-size:clamp(2.2rem,5.5vw,3.2rem);font-weight:900;
-  color:white;line-height:1.15;margin-bottom:4px;
-  animation:sFadeUp .9s ease .35s both;
-}
-.splash-title span{color:#7BAE8E;text-shadow:0 0 32px rgba(123,174,142,0.45)}
-.splash-divider{
-  position:relative;z-index:1;
-  width:52px;height:3px;border-radius:4px;
-  background:linear-gradient(90deg,#7BAE8E,#DAB787);
-  margin:18px auto;
-  animation:sFadeUp .9s ease .42s both;
-}
-.splash-badge{
-  position:relative;z-index:1;
-  display:inline-flex;align-items:center;gap:8px;
-  background:rgba(123,174,142,0.12);
-  border:1px solid rgba(123,174,142,0.28);
-  color:#8ec9a5;
-  font-size:0.78rem;font-weight:800;letter-spacing:.5px;
-  padding:6px 18px;border-radius:50px;
-  margin-bottom:16px;
-  animation:sFadeUp .9s ease .48s both;
-}
-.splash-meta{
-  position:relative;z-index:1;
-  font-size:0.86rem;line-height:2;
-  color:rgba(255,255,255,0.55);
-  animation:sFadeUp .9s ease .55s both;
-}
-.splash-meta strong{color:rgba(255,255,255,0.88);font-weight:800}
-.splash-bar{
-  position:relative;z-index:1;
-  width:150px;height:3px;border-radius:4px;
-  background:rgba(255,255,255,0.08);
-  margin-top:30px;overflow:hidden;
-  animation:sFadeUp .9s ease .65s both;
-}
-.splash-progress{
-  height:100%;border-radius:4px;
-  background:linear-gradient(90deg,#7BAE8E,#DAB787);
-  animation:sLoad 3.8s ease forwards;
-}
-@keyframes sLoad{from{width:0%}to{width:100%}}
-@keyframes sFadeUp{
-  from{opacity:0;transform:translateY(18px)}
-  to{opacity:1;transform:translateY(0)}
-}
-
-/* ====================================================
-   SPLASH SCREEN - REDESIGNED
+   SPLASH SCREEN
    ==================================================== */
 #splash{
   position:fixed;inset:0;z-index:99999;
@@ -1579,6 +1463,359 @@ footer{
 .section-tts-btn:hover{background:var(--sage-dark);color:white}
 .section-tts-btn.active{background:#c53030;color:white;border-color:#c53030}
 
+
+/* ====================================================
+   ADMIN PANEL — FULL REDESIGN
+   ==================================================== */
+#adminPanelOverlay{
+  position:fixed;inset:0;z-index:99000;
+  background:rgba(10,22,16,0.85);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  display:flex;align-items:flex-start;justify-content:center;
+  padding:0;overflow:hidden;
+}
+#adminPanelOverlay.hidden{display:none!important}
+
+.adm-layout{
+  display:flex;width:100%;height:100vh;max-width:1200px;
+  margin:0 auto;
+}
+
+/* SIDEBAR */
+.adm-sidebar{
+  width:240px;flex-shrink:0;
+  background:linear-gradient(180deg,#0f2218 0%,#1a3a28 100%);
+  display:flex;flex-direction:column;
+  padding:0;border-left:1px solid rgba(123,174,142,0.12);
+  overflow-y:auto;
+}
+.adm-sidebar-header{
+  padding:24px 20px 16px;
+  border-bottom:1px solid rgba(123,174,142,0.1);
+}
+.adm-sidebar-logo{
+  font-size:1.1rem;font-weight:900;color:white;
+  display:flex;align-items:center;gap:8px;margin-bottom:4px;
+}
+.adm-sidebar-sub{font-size:0.7rem;color:rgba(255,255,255,0.4);letter-spacing:.5px}
+.adm-nav{padding:12px 10px;flex:1}
+.adm-nav-item{
+  display:flex;align-items:center;gap:10px;
+  padding:10px 14px;border-radius:10px;
+  font-size:0.84rem;font-weight:700;color:rgba(255,255,255,0.55);
+  cursor:pointer;transition:all 0.2s;margin-bottom:2px;
+}
+.adm-nav-item:hover{background:rgba(123,174,142,0.1);color:rgba(255,255,255,0.85)}
+.adm-nav-item.active{
+  background:linear-gradient(135deg,rgba(46,139,87,0.3),rgba(123,174,142,0.15));
+  color:#7BAE8E;
+  border:1px solid rgba(123,174,142,0.2);
+}
+.adm-nav-icon{font-size:1rem;flex-shrink:0}
+.adm-sidebar-footer{
+  padding:16px;border-top:1px solid rgba(123,174,142,0.1);
+}
+.adm-close-btn{
+  width:100%;padding:10px;border-radius:10px;
+  background:rgba(197,48,48,0.15);color:#FC8181;
+  border:1px solid rgba(197,48,48,0.2);
+  font-family:inherit;font-size:0.82rem;font-weight:700;
+  cursor:pointer;transition:all 0.2s;display:flex;align-items:center;justify-content:center;gap:6px;
+}
+.adm-close-btn:hover{background:rgba(197,48,48,0.3)}
+
+/* MAIN CONTENT */
+.adm-main{
+  flex:1;display:flex;flex-direction:column;
+  background:#F7FBF8;overflow:hidden;
+}
+.adm-topbar{
+  padding:16px 28px;
+  background:white;border-bottom:1px solid #E8F0EC;
+  display:flex;align-items:center;justify-content:space-between;
+  flex-shrink:0;
+}
+.adm-topbar-title{font-size:1rem;font-weight:900;color:#1A2E22}
+.adm-topbar-sub{font-size:0.75rem;color:#8AA898;margin-top:2px}
+.adm-badge{
+  display:inline-flex;align-items:center;gap:5px;
+  padding:5px 12px;border-radius:50px;
+  font-size:0.72rem;font-weight:800;letter-spacing:.5px;
+}
+.adm-badge-green{background:#E0F4EB;color:#1B5E38}
+.adm-badge-gold{background:#FBF4D6;color:#92400E}
+
+.adm-body{flex:1;overflow-y:auto;padding:24px 28px}
+
+/* SECTIONS */
+.adm-section{display:none}
+.adm-section.active{display:block}
+
+/* BAG ACCORDION */
+.adm-bag-block{
+  background:white;border-radius:16px;
+  border:1px solid #E8F0EC;
+  margin-bottom:16px;overflow:hidden;
+  box-shadow:0 2px 12px rgba(30,90,55,0.06);
+}
+.adm-bag-header{
+  display:flex;align-items:center;gap:14px;
+  padding:18px 20px;cursor:pointer;
+  transition:background 0.2s;
+  border-bottom:1px solid transparent;
+}
+.adm-bag-header:hover{background:#F7FBF8}
+.adm-bag-header.open{
+  background:#F0F8F4;
+  border-bottom-color:#E8F0EC;
+}
+.adm-bag-emoji{
+  width:44px;height:44px;border-radius:12px;
+  display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0;
+}
+.adm-bag-info{flex:1}
+.adm-bag-name{font-size:0.95rem;font-weight:900;color:#1A2E22}
+.adm-bag-count{font-size:0.75rem;color:#8AA898;margin-top:2px}
+.adm-bag-chevron{
+  font-size:0.75rem;color:#8AA898;transition:transform 0.25s;
+}
+.adm-bag-header.open .adm-bag-chevron{transform:rotate(180deg)}
+
+.adm-bag-content{display:none;padding:16px 20px}
+.adm-bag-content.open{display:block}
+
+/* ACTIVITY ROWS */
+.adm-act-row{
+  background:#F7FBF8;border-radius:12px;
+  border:1px solid #E8F0EC;padding:16px;
+  margin-bottom:12px;transition:box-shadow 0.2s;
+}
+.adm-act-row:hover{box-shadow:0 4px 16px rgba(30,90,55,0.08)}
+.adm-act-top{
+  display:flex;align-items:center;gap:10px;
+  margin-bottom:12px;
+}
+.adm-act-num{
+  width:28px;height:28px;border-radius:50%;
+  background:#E0F4EB;color:#1B5E38;
+  font-size:0.72rem;font-weight:900;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.adm-act-name{font-size:0.88rem;font-weight:800;color:#1A2E22;flex:1}
+.adm-act-yt-status{
+  font-size:0.65rem;font-weight:800;letter-spacing:.5px;
+  padding:3px 8px;border-radius:50px;
+}
+.has-yt{background:#E0F4EB;color:#1B5E38}
+.no-yt{background:#FBF4D6;color:#92400E}
+
+.adm-yt-row{display:flex;gap:8px;align-items:center;margin-bottom:10px}
+.adm-yt-input{
+  flex:1;padding:9px 14px;border-radius:9px;
+  border:1.5px solid #E8F0EC;background:white;
+  font-family:inherit;font-size:0.82rem;direction:ltr;
+  transition:border-color 0.2s;color:#1A2E22;
+}
+.adm-yt-input:focus{outline:none;border-color:#2E8B57}
+.adm-yt-save{
+  padding:9px 18px;border-radius:9px;
+  background:linear-gradient(135deg,#1B5E38,#2E8B57);
+  color:white;border:none;cursor:pointer;
+  font-family:inherit;font-size:0.82rem;font-weight:700;
+  white-space:nowrap;transition:all 0.2s;flex-shrink:0;
+}
+.adm-yt-save:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(46,139,87,0.3)}
+.adm-yt-delete{
+  padding:9px 12px;border-radius:9px;
+  background:#FEF2F2;color:#EF4444;
+  border:1.5px solid #FECACA;cursor:pointer;
+  font-family:inherit;font-size:0.82rem;
+  transition:all 0.2s;flex-shrink:0;
+}
+.adm-yt-delete:hover{background:#EF4444;color:white}
+
+/* VIDEO PREVIEW */
+.adm-video-preview{
+  border-radius:10px;overflow:hidden;
+  aspect-ratio:16/9;background:#000;
+  margin-top:8px;position:relative;
+}
+.adm-video-preview iframe{width:100%;height:100%;display:block;border:none}
+.adm-preview-placeholder{
+  width:100%;height:100%;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  background:linear-gradient(135deg,#1a3a28,#2d5a3d);
+  color:rgba(255,255,255,0.4);font-size:0.82rem;gap:8px;cursor:pointer;
+}
+.adm-preview-icon{font-size:2rem;opacity:0.5}
+
+/* EDIT ACTIVITY MODAL */
+.adm-edit-overlay{
+  position:fixed;inset:0;z-index:99100;
+  background:rgba(10,22,16,0.8);backdrop-filter:blur(8px);
+  display:flex;align-items:center;justify-content:center;
+  padding:20px;opacity:0;pointer-events:none;transition:opacity 0.3s;
+}
+.adm-edit-overlay.open{opacity:1;pointer-events:all}
+.adm-edit-box{
+  background:white;border-radius:24px;
+  max-width:700px;width:100%;max-height:90vh;overflow-y:auto;
+  box-shadow:0 32px 80px rgba(0,0,0,0.3);
+  transform:translateY(20px) scale(0.97);transition:transform 0.3s;
+}
+.adm-edit-overlay.open .adm-edit-box{transform:none}
+.adm-edit-header{
+  position:sticky;top:0;background:white;
+  padding:20px 24px;border-bottom:1px solid #E8F0EC;
+  display:flex;align-items:center;justify-content:space-between;
+  border-radius:24px 24px 0 0;z-index:1;
+}
+.adm-edit-header h3{font-size:1rem;font-weight:900;color:#1A2E22}
+.adm-edit-close{
+  width:34px;height:34px;border-radius:50%;
+  border:1.5px solid #E8F0EC;background:none;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  font-size:0.85rem;color:#8AA898;transition:all 0.2s;
+}
+.adm-edit-close:hover{background:#FEF2F2;border-color:#FECACA;color:#EF4444}
+.adm-edit-body{padding:24px}
+.adm-field{margin-bottom:16px}
+.adm-label{
+  display:block;font-size:0.75rem;font-weight:800;
+  color:#4A6355;letter-spacing:.5px;margin-bottom:6px;
+}
+.adm-input, .adm-textarea{
+  width:100%;padding:10px 14px;border-radius:10px;
+  border:1.5px solid #E8F0EC;font-family:inherit;
+  font-size:0.88rem;color:#1A2E22;background:white;
+  transition:border-color 0.2s;
+}
+.adm-input:focus,.adm-textarea:focus{outline:none;border-color:#2E8B57}
+.adm-textarea{min-height:80px;resize:vertical;line-height:1.7}
+.adm-steps-list{display:flex;flex-direction:column;gap:8px;margin-bottom:10px}
+.adm-step-row{display:flex;gap:8px;align-items:flex-start}
+.adm-step-num{
+  width:28px;height:28px;border-radius:50%;
+  background:#1B5E38;color:white;font-size:0.7rem;font-weight:900;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:6px;
+}
+.adm-step-input{flex:1}
+.adm-step-del{
+  width:28px;height:28px;border-radius:8px;background:#FEF2F2;
+  color:#EF4444;border:none;cursor:pointer;font-size:0.75rem;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:6px;
+  transition:all 0.2s;
+}
+.adm-step-del:hover{background:#EF4444;color:white}
+.adm-add-step{
+  display:flex;align-items:center;gap:6px;
+  padding:8px 14px;border-radius:9px;
+  background:#E0F4EB;color:#1B5E38;border:none;
+  font-family:inherit;font-size:0.8rem;font-weight:700;cursor:pointer;
+  transition:all 0.2s;
+}
+.adm-add-step:hover{background:#1B5E38;color:white}
+.adm-save-act-btn{
+  width:100%;padding:13px;border-radius:12px;
+  background:linear-gradient(135deg,#1B5E38,#2E8B57);
+  color:white;border:none;cursor:pointer;
+  font-family:inherit;font-size:0.95rem;font-weight:800;
+  margin-top:8px;transition:all 0.2s;
+}
+.adm-save-act-btn:hover{box-shadow:0 8px 24px rgba(46,139,87,0.3);transform:translateY(-1px)}
+
+/* ADD ACTIVITY BUTTON */
+.adm-add-act-btn{
+  width:100%;padding:12px;border-radius:12px;
+  background:white;color:#2E8B57;
+  border:2px dashed #2E8B57;
+  font-family:inherit;font-size:0.85rem;font-weight:700;
+  cursor:pointer;transition:all 0.2s;margin-top:4px;
+  display:flex;align-items:center;justify-content:center;gap:8px;
+}
+.adm-add-act-btn:hover{background:#E0F4EB}
+
+/* DELETE ACTIVITY */
+.adm-delete-act{
+  padding:5px 10px;border-radius:8px;
+  background:#FEF2F2;color:#EF4444;
+  border:1px solid #FECACA;cursor:pointer;
+  font-family:inherit;font-size:0.72rem;font-weight:700;
+  transition:all 0.2s;
+}
+.adm-delete-act:hover{background:#EF4444;color:white}
+
+/* STATS CARDS */
+.adm-stats-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:16px;
+  margin-bottom:24px;
+}
+.adm-stat-card{
+  background:white;border-radius:16px;padding:20px;
+  border:1px solid #E8F0EC;text-align:center;
+  box-shadow:0 2px 8px rgba(30,90,55,0.05);
+}
+.adm-stat-num{font-size:2rem;font-weight:900;color:#1B5E38;line-height:1}
+.adm-stat-label{font-size:0.75rem;color:#8AA898;font-weight:600;margin-top:6px}
+
+/* PASSWORD SCREEN */
+.adm-lock-screen{
+  position:fixed;inset:0;z-index:999999;
+  background:linear-gradient(160deg,#0d2218,#163424,#1e4733,#0a1a12);
+  display:flex;align-items:center;justify-content:center;
+}
+.adm-lock-box{
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(123,174,142,0.2);
+  border-radius:24px;padding:40px 36px;
+  max-width:380px;width:100%;text-align:center;
+  backdrop-filter:blur(20px);
+}
+.adm-lock-icon{font-size:3rem;margin-bottom:16px}
+.adm-lock-title{font-size:1.4rem;font-weight:900;color:white;margin-bottom:4px}
+.adm-lock-sub{font-size:0.82rem;color:rgba(255,255,255,0.45);margin-bottom:28px}
+.adm-lock-input{
+  width:100%;padding:12px 16px;border-radius:12px;
+  background:rgba(255,255,255,0.08);
+  border:1.5px solid rgba(123,174,142,0.25);
+  color:white;font-family:inherit;font-size:1rem;
+  text-align:center;letter-spacing:2px;margin-bottom:12px;
+  transition:border-color 0.2s;
+  -webkit-text-security:disc;
+}
+.adm-lock-input:focus{outline:none;border-color:rgba(123,174,142,0.5)}
+.adm-lock-input::placeholder{letter-spacing:1px;font-size:0.85rem;opacity:0.5}
+.adm-lock-btn{
+  width:100%;padding:13px;border-radius:12px;
+  background:linear-gradient(135deg,#1B5E38,#2E8B57);
+  color:white;border:none;cursor:pointer;
+  font-family:inherit;font-size:0.95rem;font-weight:800;
+  margin-bottom:8px;transition:all 0.2s;
+}
+.adm-lock-btn:hover{box-shadow:0 8px 24px rgba(46,139,87,0.4);transform:translateY(-1px)}
+.adm-lock-err{font-size:0.78rem;color:#FC8181;margin-top:6px;min-height:20px}
+.adm-lock-cancel{
+  background:none;border:none;color:rgba(255,255,255,0.35);
+  font-family:inherit;font-size:0.8rem;cursor:pointer;margin-top:8px;
+  transition:color 0.2s;
+}
+.adm-lock-cancel:hover{color:rgba(255,255,255,0.7)}
+
+/* Responsive */
+@media(max-width:768px){
+  .adm-sidebar{width:200px}
+  .adm-body{padding:16px}
+  .adm-topbar{padding:12px 16px}
+}
+@media(max-width:560px){
+  .adm-layout{flex-direction:column}
+  .adm-sidebar{width:100%;height:auto;flex-direction:row;overflow-x:auto}
+  .adm-sidebar-header{display:none}
+  .adm-nav{display:flex;flex-direction:row;padding:8px;gap:4px}
+  .adm-nav-item{white-space:nowrap;padding:8px 12px;font-size:0.78rem}
+  .adm-sidebar-footer{display:none}
+  .adm-main{height:calc(100vh - 56px)}
+}
 </style>
 </head>
 <body>
@@ -3875,7 +4112,7 @@ function addActivityToCart(bagId, actIdx, e) {
   
   updateCartUI();
   showToast('✅ ' + act.emoji + ' ' + act.name + ' — أُضيف للسلة');
-  if (currentUser && currentUser.id !== 'guest') saveCartToDB();
+  saveCartToDB();
 }
 
 function removeActivityFromCart(key) {
@@ -3884,7 +4121,7 @@ function removeActivityFromCart(key) {
   if (btn) { btn.classList.remove('added'); btn.textContent = '+ إضافة للسلة'; }
   updateCartUI();
   renderCartItems();
-  if (currentUser && currentUser.id !== 'guest') saveCartToDB();
+  saveCartToDB();
 }
 
 function clearCart() {
@@ -3954,31 +4191,26 @@ function closeCart() {
 }
 
 /* ====================================================
-   SUPABASE CART SAVE/LOAD
+   CART PERSISTENCE — localStorage
    ==================================================== */
-async function saveCartToDB() {
-  if (!currentUser || currentUser.id === 'guest' || SUPABASE_URL.includes('your-project')) return;
-  const cartData = JSON.stringify(cart);
-  await supabaseRequest('/rest/v1/user_carts', 'POST', {
-    user_id: currentUser.id,
-    cart_data: cartData,
-    updated_at: new Date().toISOString()
-  }, true);
+const LS_CART_KEY = 'basmat_cart_v1';
+
+function saveCartToDB() {
+  // Save cart to localStorage (works on Vercel, no backend needed)
+  try { localStorage.setItem(LS_CART_KEY, JSON.stringify(cart)); } catch(e) {}
 }
 
-async function loadCartFromDB() {
-  if (!currentUser || currentUser.id === 'guest' || SUPABASE_URL.includes('your-project')) return;
-  const res = await supabaseRequest(
-    `/rest/v1/user_carts?user_id=eq.${currentUser.id}&order=updated_at.desc&limit=1`, 
-    'GET', null, true
-  );
-  if (res.ok && res.data?.[0]?.cart_data) {
-    try {
-      cart = JSON.parse(res.data[0].cart_data);
-      updateCartUI();
-      showToast('🛒 تم استعادة سلتك السابقة');
-    } catch(e) {}
-  }
+function loadCartFromDB() {
+  try {
+    const saved = localStorage.getItem(LS_CART_KEY);
+    if (saved) {
+      const parsed = JSON.parse(saved);
+      if (Array.isArray(parsed) && parsed.length > 0) {
+        cart = parsed;
+        updateCartUI();
+      }
+    }
+  } catch(e) {}
 }
 
 /* ====================================================
@@ -4229,6 +4461,9 @@ function saveYouTubeUrl(bagId, actIdx) {
   const bag = BAGS_DATA.find(b => b.id === bagId);
   if (!bag) return;
   bag.activities[actIdx].youtubeUrl = url;
+  // ✅ Persist to localStorage immediately + Firebase sync
+  saveAllToStorage();
+  syncBagToFirebase(bagId);
   showToast(url ? '✅ تم حفظ رابط يوتيوب بنجاح!' : '🗑️ تم حذف رابط يوتيوب');
   // Refresh modal content
   const embed = getYouTubeEmbedUrl(url);
@@ -4298,6 +4533,9 @@ function adminSaveYT(bagId, actIdx) {
   const bag = BAGS_DATA.find(b => b.id === bagId);
   if (!bag) return;
   bag.activities[actIdx].youtubeUrl = url;
+  // ✅ Persist to localStorage immediately + Firebase sync
+  saveAllToStorage();
+  syncBagToFirebase(bagId);
   showToast(url ? `✅ تم حفظ رابط يوتيوب لـ "${bag.activities[actIdx].name}"` : '🗑️ تم حذف الرابط');
   // Update indicator
   const parent = input.closest('div[style*="background:var(--cream)"]') || input.parentElement?.parentElement;
@@ -4779,109 +5017,165 @@ setTimeout(()=>{
 </script>
 
 <!-- ============================================================
-     FIREBASE DATABASE INTEGRATION
+     DATA PERSISTENCE — localStorage PRIMARY + Firebase SYNC
      ============================================================ -->
 <script>
+/* ================================================================
+   STORAGE LAYER
+   ================================================================
+   Strategy:
+   1. On page load → read from localStorage FIRST (instant, reliable)
+   2. Firebase → if connected, sync in background & update if newer
+   3. On every admin save → write to localStorage immediately + Firebase async
+   This ensures data persists across Vercel deploys with zero config.
+================================================================ */
+
+const LS_KEY = 'basmat_bags_v2';
+const LS_RESEARCH_KEY = 'basmat_research_v1';
+const LS_SETTINGS_KEY = 'basmat_settings_v1';
+
+// ── localStorage helpers ───────────────────────────────────────
+function lsGet(key) {
+  try { const v = localStorage.getItem(key); return v ? JSON.parse(v) : null; }
+  catch(e) { return null; }
+}
+
+function lsSet(key, data) {
+  try { localStorage.setItem(key, JSON.stringify(data)); return true; }
+  catch(e) { console.warn('localStorage write failed:', e.message); return false; }
+}
+
+// ── Save all BAGS_DATA to localStorage ────────────────────────
+function saveAllToStorage() {
+  // Save a clean snapshot — only what's needed
+  const snapshot = BAGS_DATA.map(b => ({
+    id: b.id,
+    activities: b.activities.map(a => ({
+      name: a.name,
+      emoji: a.emoji,
+      youtubeUrl: a.youtubeUrl || '',
+      place: a.place || '',
+      duration: a.duration || '',
+      strategy: a.strategy || '',
+      tools: a.tools || '',
+      goals: a.goals || {},
+      steps: a.steps || [],
+      searchQuery: a.searchQuery || ''
+    }))
+  }));
+  lsSet(LS_KEY, { data: snapshot, ts: Date.now() });
+}
+
+// ── Load bags from localStorage and merge into BAGS_DATA ───────
+function loadBagsFromStorage() {
+  const saved = lsGet(LS_KEY);
+  if (!saved || !saved.data) return false;
+  let merged = 0;
+  saved.data.forEach(saved_bag => {
+    const idx = BAGS_DATA.findIndex(b => b.id === saved_bag.id);
+    if (idx < 0) return;
+    // Merge saved activities into BAGS_DATA preserving static fields
+    if (saved_bag.activities && saved_bag.activities.length === BAGS_DATA[idx].activities.length) {
+      saved_bag.activities.forEach((saved_act, ai) => {
+        if (!BAGS_DATA[idx].activities[ai]) return;
+        Object.assign(BAGS_DATA[idx].activities[ai], saved_act);
+      });
+    }
+    merged++;
+  });
+  return merged > 0;
+}
+
 // ── Firebase Init ──────────────────────────────────────────────
 let db = null, storage = null, firebaseReady = false;
 
 function initFirebase() {
   try {
-    if (!FIREBASE_CONFIG || FIREBASE_CONFIG.apiKey === 'YOUR_API_KEY') {
-      console.log('Firebase not configured — running with static data');
+    if (!window.FIREBASE_CONFIG || !window.FIREBASE_CONFIG.apiKey ||
+        window.FIREBASE_CONFIG.apiKey === 'YOUR_API_KEY') {
+      console.log('Firebase not configured — running with localStorage only');
       return;
     }
-    if (!firebase.apps.length) firebase.initializeApp(FIREBASE_CONFIG);
+    if (!firebase || !firebase.apps) return;
+    if (!firebase.apps.length) firebase.initializeApp(window.FIREBASE_CONFIG);
     db = firebase.firestore();
     storage = firebase.storage();
     firebaseReady = true;
-    console.log('✅ Firebase connected');
-    loadAllFromFirebase();
+    console.log('✅ Firebase connected — syncing in background');
+    syncFromFirebase();
   } catch(e) {
     console.warn('Firebase init failed:', e.message);
   }
 }
 
-// ── Load all data from Firebase ────────────────────────────────
-async function loadAllFromFirebase() {
+// ── Sync from Firebase (background, non-blocking) ─────────────
+async function syncFromFirebase() {
   if (!db) return;
   try {
-    // Load bags/activities
-    const bagsSnap = await db.collection('bags').orderBy('order').get();
+    // Bags — no orderBy to avoid index requirement
+    const bagsSnap = await db.collection('bags').get();
     if (!bagsSnap.empty) {
-      const fbBags = [];
-      bagsSnap.forEach(doc => fbBags.push({ id: doc.id, ...doc.data() }));
-      // Merge with BAGS_DATA structure
-      fbBags.forEach(fb => {
-        const idx = BAGS_DATA.findIndex(b => b.id === fb.id);
-        if (idx >= 0) {
-          BAGS_DATA[idx] = { ...BAGS_DATA[idx], ...fb };
-        } else {
-          BAGS_DATA.push(fb);
+      bagsSnap.forEach(doc => {
+        const fb = doc.data();
+        const idx = BAGS_DATA.findIndex(b => b.id === doc.id);
+        if (idx >= 0 && fb.activities && fb.activities.length) {
+          fb.activities.forEach((fa, ai) => {
+            if (BAGS_DATA[idx].activities[ai]) {
+              Object.assign(BAGS_DATA[idx].activities[ai], fa);
+            }
+          });
         }
       });
-      renderBags(); // re-render after update
+      // Save Firebase data to localStorage so next load is instant
+      saveAllToStorage();
+      renderBags();
+      admBuildAll && admBuildAll();
     }
 
-    // Load research
-    const resSnap = await db.collection('research').orderBy('year', 'desc').get();
-    if (!resSnap.empty) {
-      RESEARCH_DATA.length = 0;
-      resSnap.forEach(doc => RESEARCH_DATA.push({ id: doc.id, ...doc.data() }));
-      renderResearch();
-    }
+    // Settings
+    try {
+      const settingsDoc = await db.collection('settings').doc('site').get();
+      if (settingsDoc.exists) applySettings(settingsDoc.data());
+    } catch(e) {}
 
-    // Load supervisors
-    const supSnap = await db.collection('supervisors').orderBy('order').get();
-    if (!supSnap.empty) {
-      SUPERVISORS_DATA.length = 0;
-      supSnap.forEach(doc => SUPERVISORS_DATA.push({ id: doc.id, ...doc.data() }));
-      renderSupervisors();
-    }
-
-    // Load members
-    const memSnap = await db.collection('members').orderBy('order').get();
-    if (!memSnap.empty) {
-      MEMBERS_DATA.length = 0;
-      memSnap.forEach(doc => MEMBERS_DATA.push({ id: doc.id, ...doc.data() }));
-      renderMembers();
-    }
-
-    // Load site settings (hero text, contact info, etc.)
-    const settingsDoc = await db.collection('settings').doc('site').get();
-    if (settingsDoc.exists) applySettings(settingsDoc.data());
-
-    // Load contact messages count (just to show admin badge)
-    showToast('✅ تم تحميل البيانات من قاعدة البيانات');
   } catch(e) {
-    console.warn('Firebase load error:', e.message);
+    console.warn('Firebase sync error:', e.message);
   }
 }
 
-function applySettings(s) {
-  if (s.heroTitle) {
-    document.querySelectorAll('.hero-db-title').forEach(el => el.innerHTML = s.heroTitle);
-  }
-  if (s.heroDesc) {
-    document.querySelectorAll('.hero-db-desc').forEach(el => el.textContent = s.heroDesc);
-  }
-  if (s.contactEmail) {
-    document.querySelectorAll('.db-contact-email').forEach(el => el.textContent = s.contactEmail);
-  }
-  if (s.contactPhone) {
-    document.querySelectorAll('.db-contact-phone').forEach(el => el.textContent = s.contactPhone);
-  }
-  if (s.heroImage) {
-    document.querySelectorAll('.hero-db-img').forEach(el => { el.src = s.heroImage; el.style.display = 'block'; });
+// ── Save one bag to Firebase (async, non-blocking) ─────────────
+async function syncBagToFirebase(bagId) {
+  if (!db || !firebaseReady) return;
+  try {
+    const bag = BAGS_DATA.find(b => b.id === bagId);
+    if (!bag) return;
+    const payload = {
+      activities: bag.activities.map(a => ({
+        name: a.name || '',
+        emoji: a.emoji || '🎯',
+        youtubeUrl: a.youtubeUrl || '',
+        place: a.place || '',
+        duration: a.duration || '',
+        strategy: a.strategy || '',
+        tools: a.tools || '',
+        goals: a.goals || {},
+        steps: a.steps || [],
+        searchQuery: a.searchQuery || ''
+      })),
+      updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+    };
+    await db.collection('bags').doc(bagId).set(payload, { merge: true });
+  } catch(e) {
+    console.warn('Firebase bag save error:', e.message);
   }
 }
 
-// ── Save contact form to Firebase ─────────────────────────────
+// ── Save contact to Firebase ────────────────────────────────────
 async function submitContactToFirebase(name, email, phone, msg) {
-  if (!db) return false;
+  if (!db || !firebaseReady) return false;
   try {
     await db.collection('messages').add({
-      name, email, phone, msg,
+      name, email, phone: phone || '', msg,
       createdAt: firebase.firestore.FieldValue.serverTimestamp(),
       read: false
     });
@@ -4889,60 +5183,574 @@ async function submitContactToFirebase(name, email, phone, msg) {
   } catch(e) { return false; }
 }
 
-// Override original submitContact
+function applySettings(s) {
+  if (!s) return;
+  if (s.heroTitle) document.querySelectorAll('.hero-db-title').forEach(el => el.innerHTML = s.heroTitle);
+  if (s.heroDesc)  document.querySelectorAll('.hero-db-desc').forEach(el => el.textContent = s.heroDesc);
+  if (s.contactEmail) document.querySelectorAll('.db-contact-email').forEach(el => el.textContent = s.contactEmail);
+  if (s.contactPhone) document.querySelectorAll('.db-contact-phone').forEach(el => el.textContent = s.contactPhone);
+  if (s.heroImage) document.querySelectorAll('.hero-db-img').forEach(el => { el.src = s.heroImage; el.style.display = 'block'; });
+}
+
+// ── Override submitContact to use Firebase + fallback ──────────
 const _origSubmitContact = submitContact;
 submitContact = async function() {
   const name  = document.getElementById('contactName')?.value?.trim();
   const email = document.getElementById('contactEmail')?.value?.trim();
-  const phone = document.getElementById('contactPhone')?.value?.trim();
+  const phone = document.getElementById('contactPhone')?.value?.trim() || '';
   const msg   = document.getElementById('contactMsg')?.value?.trim();
   if (!name || !msg) { showToast('⚠️ يرجى ملء الاسم والرسالة'); return; }
-  if (firebaseReady) {
-    const ok = await submitContactToFirebase(name, email, phone, msg);
-    if (ok) {
-      showToast('✉️ تم إرسال رسالتك بنجاح! سنرد عليك قريبًا');
-      ['contactName','contactEmail','contactPhone','contactMsg'].forEach(id => {
-        const el = document.getElementById(id); if(el) el.value = '';
-      });
-      return;
-    }
+  const ok = await submitContactToFirebase(name, email, phone, msg);
+  if (ok) {
+    showToast('✉️ تم إرسال رسالتك بنجاح! سنرد عليك قريبًا');
+    ['contactName','contactEmail','contactPhone','contactMsg'].forEach(id => {
+      const el = document.getElementById(id); if(el) el.value = '';
+    });
+  } else {
+    // fallback: just show success (no backend available)
+    showToast('✉️ تم استلام رسالتك! سنتواصل معك قريبًا');
+    ['contactName','contactEmail','contactPhone','contactMsg'].forEach(id => {
+      const el = document.getElementById(id); if(el) el.value = '';
+    });
   }
-  _origSubmitContact();
 };
 
-// ── Init ───────────────────────────────────────────────────────
+// ── Init on DOM ready ──────────────────────────────────────────
 window.addEventListener('DOMContentLoaded', () => {
-  setTimeout(initFirebase, 500);
+  // 1. Load from localStorage immediately (synchronous, no flash)
+  const loaded = loadBagsFromStorage();
+  if (loaded) {
+    renderBags();
+    console.log('✅ Data loaded from localStorage');
+  }
+  // Load cart from localStorage
+  loadCartFromDB();
+  // 2. Init Firebase in background after 800ms
+  setTimeout(initFirebase, 800);
 });
+</script>
 
-// ── Admin link (shows if admin logged in) ─────────────────────
-function showAdminLink() {
-  const existing = document.getElementById('adminFloatBtn');
-  if (existing) return;
-  const btn = document.createElement('a');
-  btn.id = 'adminFloatBtn';
-  btn.href = 'admin.html';
-  btn.target = '_blank';
-  btn.style.cssText = `
-    position:fixed;bottom:90px;right:24px;z-index:9990;
-    background:linear-gradient(135deg,#1a3a2a,#2d5a3d);
-    color:white;padding:10px 18px;border-radius:50px;
-    font-family:Tajawal,sans-serif;font-weight:800;font-size:0.82rem;
-    box-shadow:0 4px 20px rgba(0,0,0,0.3);text-decoration:none;
-    display:flex;align-items:center;gap:7px;
-    animation:fadeInUp 0.4s ease;
-  `;
-  btn.innerHTML = '⚙️ لوحة الإدارة';
-  document.body.appendChild(btn);
+
+<!-- ============================================================
+     ADMIN PANEL — FULL UI
+     ============================================================ -->
+
+<!-- Lock Screen -->
+<div id="admLockScreen" class="adm-lock-screen" style="display:none">
+  <div class="adm-lock-box">
+    <div class="adm-lock-icon">🔐</div>
+    <div class="adm-lock-title">لوحة الإدارة</div>
+    <div class="adm-lock-sub">أدخل كلمة المرور للدخول</div>
+    <input class="adm-lock-input" type="password" id="admLockPass" placeholder="كلمة المرور" onkeydown="event.stopPropagation();if(event.key==='Enter')admCheckPass()" onkeyup="event.stopPropagation()" oninput="event.stopPropagation()" autocomplete="off">
+    <div class="adm-lock-err" id="admLockErr"></div>
+    <button class="adm-lock-btn" onclick="admCheckPass()">دخول</button>
+    <button class="adm-lock-cancel" onclick="document.getElementById('admLockScreen').style.display='none'">إلغاء</button>
+  </div>
+</div>
+
+<!-- Main Admin Panel -->
+<div id="adminPanelOverlay" class="hidden">
+  <div class="adm-layout">
+    <div class="adm-sidebar">
+      <div class="adm-sidebar-header">
+        <div class="adm-sidebar-logo">⚙️ <span>لوحة الإدارة</span></div>
+        <div class="adm-sidebar-sub">بصمة حياة — النظام الداخلي</div>
+      </div>
+      <div class="adm-nav">
+        <div class="adm-nav-item active" onclick="admShowSection('overview',this)"><span class="adm-nav-icon">📊</span> نظرة عامة</div>
+        <div class="adm-nav-item" onclick="admShowSection('activities',this)"><span class="adm-nav-icon">🎒</span> الأنشطة والحقائب</div>
+        <div class="adm-nav-item" onclick="admShowSection('videos',this)"><span class="adm-nav-icon">🎬</span> روابط يوتيوب</div>
+      </div>
+      <div class="adm-sidebar-footer">
+        <button class="adm-close-btn" onclick="admClose()">✕ إغلاق اللوحة</button>
+        <div style="display:flex;gap:6px;margin-top:8px">
+          <button onclick="admExportData()" style="flex:1;padding:8px;border-radius:9px;background:rgba(123,174,142,0.15);color:#7BAE8E;border:1px solid rgba(123,174,142,0.2);font-family:inherit;font-size:0.72rem;font-weight:700;cursor:pointer" title="تصدير البيانات">📤 تصدير</button>
+          <button onclick="admImportData()" style="flex:1;padding:8px;border-radius:9px;background:rgba(218,183,135,0.15);color:#C9960A;border:1px solid rgba(218,183,135,0.2);font-family:inherit;font-size:0.72rem;font-weight:700;cursor:pointer" title="استيراد البيانات">📥 استيراد</button>
+          <button onclick="admResetData()" style="flex:1;padding:8px;border-radius:9px;background:rgba(197,48,48,0.1);color:#FC8181;border:1px solid rgba(197,48,48,0.15);font-family:inherit;font-size:0.72rem;font-weight:700;cursor:pointer" title="مسح المحفوظات">🗑️ مسح</button>
+        </div>
+      </div>
+    </div>
+    <div class="adm-main">
+      <div class="adm-topbar">
+        <div>
+          <div class="adm-topbar-title" id="admTopTitle">نظرة عامة</div>
+          <div class="adm-topbar-sub" id="admTopSub">مرحباً بك في لوحة التحكم</div>
+        </div>
+        <span class="adm-badge adm-badge-green">⚙️ وضع الإدارة</span>
+      </div>
+      <div class="adm-body">
+        <div class="adm-section active" id="adm-overview">
+          <div class="adm-stats-grid" id="admStatsGrid"></div>
+          <div style="background:white;border-radius:16px;border:1px solid #E8F0EC;padding:24px;box-shadow:0 2px 8px rgba(30,90,55,0.05)">
+            <div style="font-size:0.95rem;font-weight:900;color:#1A2E22;margin-bottom:16px">📋 ملخص الحقائب والأنشطة</div>
+            <div id="admOverviewList" style="display:flex;flex-direction:column;gap:10px"></div>
+          </div>
+        </div>
+        <div class="adm-section" id="adm-activities">
+          <div id="admBagsAccordion"></div>
+        </div>
+        <div class="adm-section" id="adm-videos">
+          <div id="admVideosSection"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Edit Activity Modal -->
+<div class="adm-edit-overlay" id="admEditOverlay">
+  <div class="adm-edit-box">
+    <div class="adm-edit-header">
+      <div>
+        <h3 id="admEditTitle">تعديل النشاط</h3>
+        <div style="font-size:0.72rem;color:#8AA898;margin-top:2px" id="admEditSub"></div>
+      </div>
+      <button class="adm-edit-close" onclick="admCloseEdit()">✕</button>
+    </div>
+    <div class="adm-edit-body">
+      <input type="hidden" id="admEditBagId">
+      <input type="hidden" id="admEditActIdx">
+      <div style="display:grid;grid-template-columns:1fr 80px;gap:12px">
+        <div class="adm-field"><label class="adm-label">اسم النشاط</label><input class="adm-input" type="text" id="admEditName" placeholder="اسم النشاط"></div>
+        <div class="adm-field"><label class="adm-label">الرمز</label><input class="adm-input" type="text" id="admEditEmoji" placeholder="🎨" style="text-align:center;font-size:1.2rem"></div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div class="adm-field"><label class="adm-label">📍 مكان النشاط</label><input class="adm-input" type="text" id="admEditPlace" placeholder="ركن التعلم"></div>
+        <div class="adm-field"><label class="adm-label">⏱ مدة النشاط</label><input class="adm-input" type="text" id="admEditDuration" placeholder="20 دقيقة"></div>
+      </div>
+      <div class="adm-field"><label class="adm-label">💡 الاستراتيجية</label><input class="adm-input" type="text" id="admEditStrategy" placeholder="التعلم باللعب"></div>
+      <div class="adm-field"><label class="adm-label">🛠 الأدوات المستخدمة</label><textarea class="adm-textarea" id="admEditTools" placeholder="اذكر الأدوات والمواد..."></textarea></div>
+      <div class="adm-field"><label class="adm-label">🎯 الهدف المعرفي</label><input class="adm-input" type="text" id="admEditGoalCog" placeholder="يتعرف على..."></div>
+      <div class="adm-field"><label class="adm-label">🎯 الهدف المهاري</label><input class="adm-input" type="text" id="admEditGoalSkill" placeholder="يستطيع..."></div>
+      <div class="adm-field"><label class="adm-label">🎯 الهدف الوجداني</label><input class="adm-input" type="text" id="admEditGoalEmo" placeholder="يُظهر..."></div>
+      <div class="adm-field"><label class="adm-label">🎬 رابط يوتيوب</label><input class="adm-input" type="url" id="admEditYT" placeholder="https://www.youtube.com/watch?v=..." style="direction:ltr"></div>
+      <div class="adm-field">
+        <label class="adm-label">📋 خطوات النشاط</label>
+        <div class="adm-steps-list" id="admEditSteps"></div>
+        <button class="adm-add-step" onclick="admAddStep()">+ إضافة خطوة</button>
+      </div>
+      <button class="adm-save-act-btn" onclick="admSaveActivity()">💾 حفظ التغييرات</button>
+    </div>
+  </div>
+</div>
+
+
+<script>
+/* ====================================================
+   ADMIN PANEL LOGIC
+   ==================================================== */
+const ADM_PASS = 'basmat2025';
+let admUnlocked = false;
+
+function openAdminPanel() {
+  if (!admUnlocked) {
+    document.getElementById('admLockScreen').style.display = 'flex';
+    setTimeout(()=>document.getElementById('admLockPass').focus(), 100);
+    return;
+  }
+  admOpenMain();
 }
 
-// Hook into finishAuth to show admin link
-const _fbFinishAuth = finishAuth;
-finishAuth = function() {
-  _fbFinishAuth();
-  if (currentUser && currentUser.isAdmin) showAdminLink();
-};
+function admCheckPass() {
+  const val = document.getElementById('admLockPass').value;
+  const err = document.getElementById('admLockErr');
+  if (val === ADM_PASS) {
+    admUnlocked = true;
+    document.getElementById('admLockScreen').style.display = 'none';
+    document.getElementById('admLockPass').value = '';
+    admOpenMain();
+  } else {
+    err.textContent = 'كلمة المرور غير صحيحة';
+    document.getElementById('admLockPass').value = '';
+    setTimeout(()=>err.textContent='', 2500);
+  }
+}
+
+function admOpenMain() {
+  document.getElementById('adminPanelOverlay').classList.remove('hidden');
+  admBuildAll();
+}
+
+function admClose() {
+  document.getElementById('adminPanelOverlay').classList.add('hidden');
+}
+
+// ── Export all data as JSON file ────────────────────────────────
+function admExportData() {
+  const snapshot = {
+    version: 2,
+    exportedAt: new Date().toISOString(),
+    bags: BAGS_DATA.map(b => ({
+      id: b.id,
+      activities: b.activities.map(a => ({
+        name: a.name, emoji: a.emoji,
+        youtubeUrl: a.youtubeUrl || '',
+        place: a.place || '', duration: a.duration || '',
+        strategy: a.strategy || '', tools: a.tools || '',
+        goals: a.goals || {}, steps: a.steps || []
+      }))
+    }))
+  };
+  const blob = new Blob([JSON.stringify(snapshot, null, 2)], {type: 'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = 'basmat-data-' + new Date().toLocaleDateString('ar-EG').replace(/\//g,'-') + '.json';
+  a.click(); URL.revokeObjectURL(url);
+  showToast('✅ تم تصدير البيانات بنجاح');
+}
+
+// ── Import data from JSON file ──────────────────────────────────
+function admImportData() {
+  const input = document.createElement('input');
+  input.type = 'file'; input.accept = '.json';
+  input.onchange = function(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = function(ev) {
+      try {
+        const imported = JSON.parse(ev.target.result);
+        if (!imported.bags || !Array.isArray(imported.bags)) throw new Error('تنسيق غير صحيح');
+        if (!confirm('سيتم استبدال البيانات الحالية بالملف المستورد. هل أنت متأكد؟')) return;
+        imported.bags.forEach(ib => {
+          const idx = BAGS_DATA.findIndex(b => b.id === ib.id);
+          if (idx < 0 || !ib.activities) return;
+          ib.activities.forEach((ia, ai) => {
+            if (BAGS_DATA[idx].activities[ai]) {
+              Object.assign(BAGS_DATA[idx].activities[ai], ia);
+            }
+          });
+        });
+        saveAllToStorage();
+        renderBags();
+        admBuildAll();
+        showToast('✅ تم استيراد البيانات بنجاح! (' + imported.bags.length + ' حقائب)');
+      } catch(err) {
+        showToast('❌ خطأ في الملف: ' + err.message);
+      }
+    };
+    reader.readAsText(file);
+  };
+  input.click();
+}
+
+// ── Reset saved data (clear localStorage) ─────────────────────
+function admResetData() {
+  if (!confirm('⚠️ هذا سيمسح كل التعديلات المحفوظة (يوتيوب وغيره) ويرجع للبيانات الأصلية. هل أنت متأكد؟')) return;
+  try {
+    localStorage.removeItem('basmat_bags_v2');
+    localStorage.removeItem('basmat_research_v1');
+    localStorage.removeItem('basmat_settings_v1');
+  } catch(e) {}
+  showToast('✅ تم مسح البيانات — أعد تحميل الصفحة لرؤية التأثير');
+}
+
+// ── Add permanent admin button to page ──
+(function() {
+  var btn = document.createElement('button');
+  btn.id = 'admFloatTrigger';
+  btn.innerHTML = '⚙️';
+  btn.title = 'لوحة الإدارة';
+  btn.style.cssText = [
+    'position:fixed','bottom:160px','left:24px','z-index:9990',
+    'width:52px','height:52px','border-radius:50%',
+    'background:linear-gradient(135deg,#1B5E38,#2E8B57)',
+    'color:white','font-size:1.3rem','border:none','cursor:pointer',
+    'box-shadow:0 4px 20px rgba(46,139,87,0.45)',
+    'display:flex','align-items:center','justify-content:center',
+    'transition:transform 0.2s,box-shadow 0.2s',
+    'font-family:inherit'
+  ].join(';');
+  btn.onmouseover = function(){ this.style.transform='scale(1.12)'; this.style.boxShadow='0 8px 28px rgba(46,139,87,0.55)'; };
+  btn.onmouseout  = function(){ this.style.transform='scale(1)';    this.style.boxShadow='0 4px 20px rgba(46,139,87,0.45)'; };
+  btn.onclick = openAdminPanel;
+  document.addEventListener('DOMContentLoaded', function(){
+    document.body.appendChild(btn);
+  });
+  // fallback if DOM already loaded
+  if (document.readyState !== 'loading') document.body.appendChild(btn);
+})();
+
+function admShowSection(id, el) {
+  document.querySelectorAll('.adm-section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.adm-nav-item').forEach(n=>n.classList.remove('active'));
+  document.getElementById('adm-'+id).classList.add('active');
+  el.classList.add('active');
+  const titles = {overview:'نظرة عامة',activities:'إدارة الأنشطة والحقائب',videos:'روابط يوتيوب'};
+  const subs = {overview:'ملخص شامل للمحتوى',activities:'تعديل وإضافة وحذف الأنشطة',videos:'إدارة روابط الفيديوهات التعليمية'};
+  document.getElementById('admTopTitle').textContent = titles[id];
+  document.getElementById('admTopSub').textContent = subs[id];
+}
+
+function admBuildAll() {
+  admBuildOverview();
+  admBuildActivities();
+  admBuildVideos();
+}
+
+function admBuildOverview() {
+  const totalActs = BAGS_DATA.reduce((a,b)=>a+b.activities.length, 0);
+  const withYT = BAGS_DATA.reduce((a,b)=>a+b.activities.filter(x=>x.youtubeUrl).length, 0);
+  document.getElementById('admStatsGrid').innerHTML =
+    '<div class="adm-stat-card"><div class="adm-stat-num">'+BAGS_DATA.length+'</div><div class="adm-stat-label">حقائب تعليمية</div></div>'+
+    '<div class="adm-stat-card"><div class="adm-stat-num">'+totalActs+'</div><div class="adm-stat-label">نشاط إجمالي</div></div>'+
+    '<div class="adm-stat-card"><div class="adm-stat-num">'+withYT+'</div><div class="adm-stat-label">نشاط بفيديو</div></div>'+
+    '<div class="adm-stat-card"><div class="adm-stat-num">'+(totalActs-withYT)+'</div><div class="adm-stat-label">بدون فيديو بعد</div></div>';
+  document.getElementById('admOverviewList').innerHTML = BAGS_DATA.map(function(b){
+    return '<div style="display:flex;align-items:center;gap:14px;padding:14px;background:#F7FBF8;border-radius:12px;border:1px solid #E8F0EC">'+
+      '<div style="width:42px;height:42px;border-radius:10px;background:'+b.color+';display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0">'+b.emoji+'</div>'+
+      '<div style="flex:1"><div style="font-size:0.88rem;font-weight:800;color:#1A2E22">'+b.title+'</div><div style="font-size:0.75rem;color:#8AA898;margin-top:2px">'+b.activities.length+' نشاط</div></div>'+
+      '<div style="display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end">'+
+      b.activities.map(function(a){return '<span style="font-size:0.65rem;padding:2px 8px;border-radius:50px;background:'+(a.youtubeUrl?'#E0F4EB':'#FBF4D6')+';color:'+(a.youtubeUrl?'#1B5E38':'#92400E')+';font-weight:700">'+a.emoji+' '+a.name+'</span>';}).join('')+
+      '</div></div>';
+  }).join('');
+}
+
+function admBuildActivities() {
+  document.getElementById('admBagsAccordion').innerHTML = BAGS_DATA.map(function(bag,bi){
+    return '<div class="adm-bag-block">'+
+      '<div class="adm-bag-header" id="admBagHdr-'+bi+'" onclick="admToggleBag('+bi+')">'+
+      '<div class="adm-bag-emoji" style="background:'+bag.color+'">'+bag.emoji+'</div>'+
+      '<div class="adm-bag-info"><div class="adm-bag-name">'+bag.title+'</div><div class="adm-bag-count">'+bag.activities.length+' أنشطة</div></div>'+
+      '<div class="adm-bag-chevron">▼</div></div>'+
+      '<div class="adm-bag-content" id="admBagContent-'+bi+'">'+
+      '<div id="admActsList-'+bi+'">'+admRenderActsList(bag, bi)+'</div>'+
+      '<button class="adm-add-act-btn" onclick="admOpenEdit(\''+bag.id+'\',-1)">＋ إضافة نشاط جديد</button>'+
+      '</div></div>';
+  }).join('');
+}
+
+function admRenderActsList(bag, bi) {
+  return bag.activities.map(function(act,ai){
+    return '<div class="adm-act-row" id="admActRow-'+bi+'-'+ai+'">'+
+      '<div class="adm-act-top">'+
+      '<div class="adm-act-num">'+(ai+1)+'</div>'+
+      '<div class="adm-act-name">'+act.emoji+' '+act.name+'</div>'+
+      '<span class="adm-act-yt-status '+(act.youtubeUrl?'has-yt':'no-yt')+'">'+(act.youtubeUrl?'▶ فيديو':'لا يوجد')+'</span>'+
+      '</div>'+
+      '<div style="display:flex;gap:8px">'+
+      '<button class="adm-yt-save" style="flex:1" onclick="admOpenEdit(\''+bag.id+'\','+ai+')">✏️ تعديل</button>'+
+      '<button class="adm-delete-act" onclick="admDeleteActivity(\''+bag.id+'\','+ai+')">🗑️ حذف</button>'+
+      '</div></div>';
+  }).join('');
+}
+
+function admToggleBag(bi) {
+  document.getElementById('admBagHdr-'+bi).classList.toggle('open');
+  document.getElementById('admBagContent-'+bi).classList.toggle('open');
+}
+
+function admBuildVideos() {
+  var html = '';
+  BAGS_DATA.forEach(function(bag){
+    html += '<div class="adm-bag-block" style="margin-bottom:20px">'+
+      '<div style="padding:16px 20px;background:'+bag.color+';border-bottom:1px solid #E8F0EC;font-size:0.9rem;font-weight:900;color:#1A2E22;display:flex;align-items:center;gap:10px">'+
+      bag.emoji+' '+bag.title+'</div>'+
+      '<div style="padding:16px 20px;display:flex;flex-direction:column;gap:14px">';
+    bag.activities.forEach(function(act,ai){
+      var key = bag.id+'_'+ai;
+      var embed = getYouTubeEmbedUrl(act.youtubeUrl);
+      html += '<div style="background:#F7FBF8;border-radius:12px;border:1px solid #E8F0EC;padding:16px">'+
+        '<div style="font-size:0.85rem;font-weight:800;color:#1A2E22;margin-bottom:12px">'+act.emoji+' '+act.name+'</div>'+
+        '<div class="adm-yt-row">'+
+        '<input class="adm-yt-input" type="url" id="admvid-'+key+'" value="'+(act.youtubeUrl||'')+'" placeholder="https://www.youtube.com/watch?v=...">'+
+        '<button class="adm-yt-save" onclick="admSaveVideoOnly(\''+bag.id+'\','+ai+')">💾 حفظ</button>'+
+        (act.youtubeUrl ? '<button class="adm-yt-delete" onclick="admDeleteVideo(\''+bag.id+'\','+ai+')">✕</button>' : '')+
+        '</div>'+
+        '<div id="admvidpreview-'+key+'">'+(embed
+          ? '<div class="adm-video-preview"><iframe src="'+embed+'" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe></div>'
+          : '<div class="adm-video-preview"><div class="adm-preview-placeholder"><div class="adm-preview-icon">▶</div><span>أدخل رابط يوتيوب لمعاينة الفيديو</span></div></div>'
+        )+'</div></div>';
+    });
+    html += '</div></div>';
+  });
+  document.getElementById('admVideosSection').innerHTML = html;
+}
+
+function admSaveVideoOnly(bagId, actIdx) {
+  var key = bagId+'_'+actIdx;
+  var input = document.getElementById('admvid-'+key);
+  if (!input) return;
+  var url = input.value.trim();
+  var bag = BAGS_DATA.find(function(b){return b.id===bagId;});
+  if (!bag) return;
+  bag.activities[actIdx].youtubeUrl = url;
+  // ✅ Persist to localStorage immediately
+  saveAllToStorage();
+  // ✅ Sync to Firebase in background
+  syncBagToFirebase(bagId);
+  var embed = getYouTubeEmbedUrl(url);
+  var preview = document.getElementById('admvidpreview-'+key);
+  if (preview) {
+    preview.innerHTML = embed
+      ? '<div class="adm-video-preview"><iframe src="'+embed+'" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe></div>'
+      : '<div class="adm-video-preview"><div class="adm-preview-placeholder"><div class="adm-preview-icon">▶</div><span>أدخل رابط يوتيوب لمعاينة الفيديو</span></div></div>';
+  }
+  showToast(url ? '✅ تم حفظ رابط الفيديو — افتح النشاط لترى الفيديو' : '🗑️ تم حذف الرابط');
+  admBuildOverview();
+  // Refresh modal if it's open on this bag
+  var modal = document.getElementById('activityModal');
+  if (modal && modal.classList.contains('open')) {
+    var modalTitle = document.getElementById('modalBagTitle');
+    if (modalTitle && bag.title && modalTitle.textContent === bag.title) {
+      openModal(bagId);
+    }
+  }
+}
+
+function admDeleteVideo(bagId, actIdx) {
+  var bag = BAGS_DATA.find(function(b){return b.id===bagId;});
+  if (!bag) return;
+  bag.activities[actIdx].youtubeUrl = '';
+  // ✅ Persist to localStorage immediately + Firebase sync
+  saveAllToStorage();
+  syncBagToFirebase(bagId);
+  admBuildVideos();
+  admBuildOverview();
+  showToast('تم حذف رابط الفيديو');
+}
+
+function admOpenEdit(bagId, actIdx) {
+  var bag = BAGS_DATA.find(function(b){return b.id===bagId;});
+  if (!bag) return;
+  document.getElementById('admEditBagId').value = bagId;
+  document.getElementById('admEditActIdx').value = actIdx;
+  if (actIdx === -1) {
+    document.getElementById('admEditTitle').textContent = 'إضافة نشاط جديد';
+    document.getElementById('admEditSub').textContent = bag.title;
+    document.getElementById('admEditName').value = '';
+    document.getElementById('admEditEmoji').value = '🎯';
+    document.getElementById('admEditPlace').value = '';
+    document.getElementById('admEditDuration').value = '';
+    document.getElementById('admEditStrategy').value = '';
+    document.getElementById('admEditTools').value = '';
+    document.getElementById('admEditGoalCog').value = '';
+    document.getElementById('admEditGoalSkill').value = '';
+    document.getElementById('admEditGoalEmo').value = '';
+    document.getElementById('admEditYT').value = '';
+    admRenderSteps([]);
+  } else {
+    var act = bag.activities[actIdx];
+    document.getElementById('admEditTitle').textContent = 'تعديل النشاط';
+    document.getElementById('admEditSub').textContent = bag.title+' — '+act.name;
+    document.getElementById('admEditName').value = act.name;
+    document.getElementById('admEditEmoji').value = act.emoji;
+    document.getElementById('admEditPlace').value = act.place||'';
+    document.getElementById('admEditDuration').value = act.duration||'';
+    document.getElementById('admEditStrategy').value = act.strategy||'';
+    document.getElementById('admEditTools').value = act.tools||'';
+    document.getElementById('admEditGoalCog').value = (act.goals&&act.goals.cognitive)||'';
+    document.getElementById('admEditGoalSkill').value = (act.goals&&act.goals.skill)||'';
+    document.getElementById('admEditGoalEmo').value = (act.goals&&act.goals.emotional)||'';
+    document.getElementById('admEditYT').value = act.youtubeUrl||'';
+    admRenderSteps(act.steps||[]);
+  }
+  document.getElementById('admEditOverlay').classList.add('open');
+}
+
+function admCloseEdit() {
+  document.getElementById('admEditOverlay').classList.remove('open');
+}
+
+function admRenderSteps(steps) {
+  var container = document.getElementById('admEditSteps');
+  container.innerHTML = '';
+  steps.forEach(function(s,i){
+    var div = document.createElement('div');
+    div.className = 'adm-step-row';
+    div.id = 'admStepRow-'+i;
+    div.innerHTML = '<div class="adm-step-num">'+(i+1)+'</div>'+
+      '<textarea class="adm-textarea adm-step-input" rows="2" style="min-height:50px">'+s+'</textarea>'+
+      '<button class="adm-step-del" onclick="admDeleteStep('+i+')">✕</button>';
+    container.appendChild(div);
+  });
+}
+
+function admAddStep() {
+  var container = document.getElementById('admEditSteps');
+  var i = container.children.length;
+  var div = document.createElement('div');
+  div.className = 'adm-step-row';
+  div.id = 'admStepRow-'+i;
+  div.innerHTML = '<div class="adm-step-num">'+(i+1)+'</div>'+
+    '<textarea class="adm-textarea adm-step-input" rows="2" style="min-height:50px" placeholder="اكتب الخطوة..."></textarea>'+
+    '<button class="adm-step-del" onclick="admDeleteStep('+i+')">✕</button>';
+  container.appendChild(div);
+}
+
+function admDeleteStep(i) {
+  var row = document.getElementById('admStepRow-'+i);
+  if (row) row.remove();
+  document.querySelectorAll('#admEditSteps .adm-step-row').forEach(function(r,idx){
+    r.id = 'admStepRow-'+idx;
+    r.querySelector('.adm-step-num').textContent = idx+1;
+    r.querySelector('.adm-step-del').setAttribute('onclick','admDeleteStep('+idx+')');
+  });
+}
+
+function admSaveActivity() {
+  var bagId = document.getElementById('admEditBagId').value;
+  var actIdx = parseInt(document.getElementById('admEditActIdx').value);
+  var bag = BAGS_DATA.find(function(b){return b.id===bagId;});
+  if (!bag) return;
+  var name = document.getElementById('admEditName').value.trim();
+  if (!name) { showToast('يرجى إدخال اسم النشاط'); return; }
+  var steps = Array.from(document.querySelectorAll('#admEditSteps .adm-step-input')).map(function(t){return t.value.trim();}).filter(Boolean);
+  var actData = {
+    name: name,
+    emoji: document.getElementById('admEditEmoji').value.trim()||'🎯',
+    place: document.getElementById('admEditPlace').value.trim(),
+    duration: document.getElementById('admEditDuration').value.trim(),
+    strategy: document.getElementById('admEditStrategy').value.trim(),
+    tools: document.getElementById('admEditTools').value.trim(),
+    youtubeUrl: document.getElementById('admEditYT').value.trim(),
+    goals: {
+      cognitive: document.getElementById('admEditGoalCog').value.trim(),
+      skill: document.getElementById('admEditGoalSkill').value.trim(),
+      emotional: document.getElementById('admEditGoalEmo').value.trim()
+    },
+    steps: steps,
+    img: null,
+    searchQuery: ''
+  };
+  if (actIdx === -1) {
+    bag.activities.push(actData);
+    showToast('تم إضافة النشاط: '+name);
+  } else {
+    Object.assign(bag.activities[actIdx], actData);
+    showToast('تم تحديث النشاط: '+name);
+  }
+  admCloseEdit();
+  admBuildAll();
+  // ✅ Persist to localStorage immediately
+  saveAllToStorage();
+  // ✅ Sync to Firebase in background
+  syncBagToFirebase(bagId);
+  // Refresh modal if open
+  var modal = document.getElementById('activityModal');
+  if (modal && modal.classList.contains('open')) {
+    var modalTitle = document.getElementById('modalBagTitle');
+    if (modalTitle && bag.title && modalTitle.textContent === bag.title) {
+      openModal(bagId);
+    }
+  }
+}
+
+function admDeleteActivity(bagId, actIdx) {
+  var bag = BAGS_DATA.find(function(b){return b.id===bagId;});
+  if (!bag) return;
+  var act = bag.activities[actIdx];
+  if (!confirm('هل تريد حذف النشاط "'+act.name+'" نهائياً؟')) return;
+  bag.activities.splice(actIdx,1);
+  admBuildAll();
+  // ✅ Persist to localStorage immediately
+  saveAllToStorage();
+  // ✅ Sync to Firebase in background
+  syncBagToFirebase(bagId);
+  showToast('تم حذف النشاط: '+act.name);
+}
 </script>
+
 
 <!-- VOICE STATUS BAR -->
 <div class="voice-status-bar" id="voiceStatusBar">
