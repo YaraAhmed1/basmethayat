@@ -306,9 +306,197 @@ function renderBagVideoList() {
 }
 
 /* ============================================================
-   INIT
+   GALLERY — عرض كل صور الأنشطة
+   ============================================================ */
+function renderGallery() {
+  const grid = document.getElementById('galleryGrid');
+  if (!grid) return;
+  const all = BAG1.concat(BAG2);
+  grid.innerHTML = '';
+  all.forEach(function(act) {
+    const item = document.createElement('div');
+    item.className = 'gallery-item';
+    item.setAttribute('data-aos', 'zoom-in');
+    item.innerHTML =
+      '<div class="gallery-img-wrap" onclick="openActivityModal(\'' + act.id + '\')">'
+      + '<img src="' + act.img + '" alt="' + act.title + '" loading="lazy" '
+      + 'onerror="this.parentElement.classList.add(\'gallery-error\')" />'
+      + '<div class="gallery-overlay">'
+      + '<span class="gallery-num">' + act.num + '</span>'
+      + '<span class="gallery-name">' + act.title + '</span>'
+      + '<i class="bi bi-zoom-in"></i>'
+      + '</div>'
+      + '</div>';
+    grid.appendChild(item);
+  });
+}
+
+/* ============================================================
+   CHATBOT — Gemini AI
+   ============================================================ */
+const GEMINI_KEY = 'AIzaSyD-REPLACE_WITH_YOUR_KEY';
+const GEMINI_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=' + GEMINI_KEY;
+
+const SYSTEM_PROMPT = `أنت مساعد ذكي متخصص في مشروع "بصمة حياة" التعليمي.
+المشروع يتعلق بتصميم بيئة تعليمية مرنة لتنمية المهارات الحياتية لدى الأطفال ذوي الإعاقة العقلية.
+يحتوي المشروع على حقيبتين تعليميتين:
+- الحقيبة الأولى "رحلة المهارات الحياتية": 20 نشاطاً
+- الحقيبة الثانية "عبّر وأتفاعل": 15 نشاطاً
+أجب باللغة العربية بشكل مختصر وواضح وودود. لا تتجاوز 3 أسطر في إجاباتك إلا إذا طُلب منك شرح تفصيلي.`;
+
+let chatHistory = [];
+let isChatOpen = false;
+
+function toggleChatbot() {
+  const box = document.getElementById('chatbotBox');
+  const icon = document.getElementById('chatFabIcon');
+  isChatOpen = !isChatOpen;
+  box.style.display = isChatOpen ? 'flex' : 'none';
+  icon.className = isChatOpen ? 'bi bi-x-lg' : 'bi bi-chat-dots-fill';
+  if (isChatOpen) document.getElementById('chatInput').focus();
+}
+
+function appendMsg(text, isBot) {
+  const msgs = document.getElementById('chatMessages');
+  const div = document.createElement('div');
+  div.className = 'chat-msg ' + (isBot ? 'bot-msg' : 'user-msg');
+  div.innerHTML = '<div class="chat-bubble">' + text + '</div>';
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+function showTyping() {
+  const msgs = document.getElementById('chatMessages');
+  const div = document.createElement('div');
+  div.className = 'chat-msg bot-msg';
+  div.id = 'typingIndicator';
+  div.innerHTML = '<div class="chat-bubble typing-bubble"><span></span><span></span><span></span></div>';
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+function removeTyping() {
+  const t = document.getElementById('typingIndicator');
+  if (t) t.remove();
+}
+
+async function sendChatMsg() {
+  const input = document.getElementById('chatInput');
+  const text = input.value.trim();
+  if (!text) return;
+  input.value = '';
+  appendMsg(text, false);
+  chatHistory.push({ role: 'user', parts: [{ text: text }] });
+  showTyping();
+  document.getElementById('chatSendBtn').disabled = true;
+
+  try {
+    const messages = [
+      { role: 'user', parts: [{ text: SYSTEM_PROMPT }] },
+      { role: 'model', parts: [{ text: 'حسناً، أنا مستعد للمساعدة في كل ما يتعلق بمشروع بصمة حياة.' }] }
+    ].concat(chatHistory);
+
+    const res = await fetch(GEMINI_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ contents: messages, generationConfig: { maxOutputTokens: 300, temperature: 0.7 } })
+    });
+    const data = await res.json();
+    const reply = data.candidates && data.candidates[0]
+      ? data.candidates[0].content.parts[0].text
+      : 'عذراً، لم أتمكن من الرد. تأكد من إضافة مفتاح Gemini API.';
+    removeTyping();
+    appendMsg(reply, true);
+    chatHistory.push({ role: 'model', parts: [{ text: reply }] });
+    if (chatHistory.length > 20) chatHistory = chatHistory.slice(-20);
+  } catch(e) {
+    removeTyping();
+    appendMsg('⚠️ تأكد من إضافة مفتاح Gemini API الصحيح في ملف main.js', true);
+  }
+  document.getElementById('chatSendBtn').disabled = false;
+}
+
+/* ============================================================
+   TTS — القارئ الصوتي
+   ============================================================ */
+let ttsUtterance = null;
+let ttsActive = false;
+let ttsChunks = [];
+let ttsIndex = 0;
+
+function getPageText() {
+  const ignore = ['SCRIPT','STYLE','NOSCRIPT','NAV','FOOTER'];
+  let texts = [];
+  document.querySelectorAll('h1,h2,h3,h4,h5,h6,p,li,span.section-eyebrow,.hero-badge,.activity-title,.bag-title,.hfy-title,.hfy-desc,.hfy-feature span,.act-modal-title').forEach(function(el) {
+    if (ignore.indexOf(el.tagName) >= 0) return;
+    const txt = el.innerText.trim();
+    if (txt.length > 3) texts.push(txt);
+  });
+  return texts;
+}
+
+function ttsToggle() {
+  if (ttsActive) { ttsStop(); return; }
+  ttsStart();
+}
+
+function ttsStart() {
+  if (!window.speechSynthesis) { alert('متصفحك لا يدعم القراءة الصوتية'); return; }
+  window.speechSynthesis.cancel();
+  ttsChunks = getPageText();
+  ttsIndex = 0;
+  ttsActive = true;
+  document.getElementById('ttsBar').classList.add('tts-playing');
+  const icon = document.getElementById('ttsPlayIcon');
+  if (icon) icon.className = 'bi bi-pause-fill';
+  ttsReadNext();
+}
+
+function ttsReadNext() {
+  if (!ttsActive || ttsIndex >= ttsChunks.length) { ttsStop(); return; }
+  const pct = Math.round((ttsIndex / ttsChunks.length) * 100);
+  document.getElementById('ttsProgressBar').style.width = pct + '%';
+  document.getElementById('ttsLabel').textContent = (ttsIndex + 1) + ' / ' + ttsChunks.length;
+  ttsUtterance = new SpeechSynthesisUtterance(ttsChunks[ttsIndex]);
+  ttsUtterance.lang = 'ar-SA';
+  ttsUtterance.rate = 0.9;
+  ttsUtterance.pitch = 1;
+  // Pick Arabic voice if available
+  const voices = window.speechSynthesis.getVoices();
+  const arVoice = voices.find(function(v){ return v.lang.startsWith('ar'); });
+  if (arVoice) ttsUtterance.voice = arVoice;
+  ttsUtterance.onend = function() { ttsIndex++; ttsReadNext(); };
+  ttsUtterance.onerror = function() { ttsIndex++; ttsReadNext(); };
+  window.speechSynthesis.speak(ttsUtterance);
+}
+
+function ttsStop() {
+  ttsActive = false;
+  ttsIndex = 0;
+  window.speechSynthesis.cancel();
+  document.getElementById('ttsProgressBar').style.width = '0%';
+  document.getElementById('ttsLabel').textContent = 'القارئ الصوتي';
+  document.getElementById('ttsBar').classList.remove('tts-playing');
+  const icon = document.getElementById('ttsPlayIcon');
+  if (icon) icon.className = 'bi bi-volume-up-fill';
+}
+
+// Keep speech alive (Chrome bug)
+setInterval(function() {
+  if (ttsActive && window.speechSynthesis.speaking && window.speechSynthesis.paused) {
+    window.speechSynthesis.resume();
+  }
+}, 5000);
+
+/* ============================================================
+   INIT — add gallery to DOMContentLoaded
    ============================================================ */
 document.addEventListener('DOMContentLoaded', function() {
   renderBagGrid(BAG1, 'bag1Grid');
   renderBagGrid(BAG2, 'bag2Grid');
+  renderGallery();
+  // Load voices
+  if (window.speechSynthesis) {
+    window.speechSynthesis.onvoiceschanged = function() { window.speechSynthesis.getVoices(); };
+  }
 });

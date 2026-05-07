@@ -25,7 +25,7 @@ const FIREBASE_CONFIG = {
 ### 3. تغيير كلمة مرور الأدمن
 في ملف `/public/admin.html` ابحث عن:
 ```js
-const ADMIN_PASSWORD = 'basmat2025admin';
+const ADMIN_PASSWORD = 'basmat2026admin';
 ```
 وغيّرها لكلمة مرور قوية.
 

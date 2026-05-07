@@ -18,7 +18,10 @@
 <div id="splashScreen">
   <div class="splash-bg"></div>
   <div class="splash-content">
-    <img src="splash.png" alt="بصمة حياة" class="splash-img" />
+    <div class="splash-hero-img-wrap">
+      <img src="splash_hero.png" alt="الإعاقة إعاقة الفكر" class="splash-hero-img" />
+    </div>
+
     <div class="splash-text-box">
       <div class="splash-bismillah">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</div>
       <h1 class="splash-title">بصمة حياة</h1>
@@ -266,6 +269,7 @@
     </div>
   </section>
 
+
   <!-- SCALES PAGE LINK -->
   <section class="scales-banner py-5" id="scales">
     <div class="container">
@@ -296,6 +300,46 @@
         <div class="col-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="300"><div class="strategy-chip"><i class="bi bi-tablet"></i><span>التكنولوجيا التعليمية</span></div></div>
         <div class="col-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="360"><div class="strategy-chip"><i class="bi bi-eye"></i><span>الوسائل البصرية</span></div></div>
         <div class="col-6 col-md-4 col-lg-3" data-aos="fade-up" data-aos-delay="420"><div class="strategy-chip"><i class="bi bi-chat-heart"></i><span>التعزيز الإيجابي</span></div></div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ====== HERE FOR YOU ====== -->
+  <section class="here-for-you-section py-section" id="hereForYou">
+    <div class="container">
+      <div class="hfy-card" data-aos="zoom-in">
+        <div class="hfy-glow"></div>
+        <div class="row align-items-center g-4">
+          <div class="col-lg-7">
+            <div class="hfy-badge"><i class="bi bi-heart-pulse-fill me-2"></i>رسالتنا</div>
+            <h2 class="hfy-title">نحن هنا من أجلك</h2>
+            <p class="hfy-desc">نؤمن أن كل طفل يستحق بيئة تعليمية آمنة ومحفّزة تُطلق طاقاته وتُبني مهاراته — مهما كانت قدراته. مشروع بصمة حياة يسعى لجسر الفجوة بين إمكانيات الطفل وطموحات المجتمع.</p>
+            <div class="hfy-features">
+              <div class="hfy-feature"><i class="bi bi-check-circle-fill"></i><span>أنشطة مصممة خصيصاً لذوي الإعاقة العقلية</span></div>
+              <div class="hfy-feature"><i class="bi bi-check-circle-fill"></i><span>بيئة تعلم مرنة تراعي الفروق الفردية</span></div>
+              <div class="hfy-feature"><i class="bi bi-check-circle-fill"></i><span>دليل عملي للمعلمين وأولياء الأمور</span></div>
+            </div>
+          </div>
+          <div class="col-lg-5">
+            <div class="hfy-supervisor-card">
+              <div class="hfy-supervisor-img">
+                <img src="dr_amal.png" alt="أ.د. أمل عبيد مصطفى" />
+              </div>
+              <div class="hfy-supervisor-info">
+                <div class="hfy-sup-title">المشرف العام على البرنامج</div>
+                <h4 class="hfy-sup-name">أ.د. أمل عبيد مصطفى</h4>
+                <p class="hfy-sup-role">منسق برنامج إعداد معلم ذوي الاحتياجات الخاصة في الطفولة المبكرة</p>
+                <p class="hfy-sup-dept">كلية التربية النوعية — جامعة بنها</p>
+                <div class="hfy-sup-tags">
+                  <span>التربية الخاصة</span>
+                  <span>الطفولة المبكرة</span>
+                  <span>الإعاقة العقلية</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -444,6 +488,54 @@
       </div>
     </div>
   </footer>
+
+
+  <!-- ====== CHATBOT ====== -->
+  <div id="chatbotBtn" class="chatbot-fab" onclick="toggleChatbot()" title="المساعد الذكي">
+    <i class="bi bi-chat-dots-fill" id="chatFabIcon"></i>
+  </div>
+
+  <div id="chatbotBox" class="chatbot-box" style="display:none">
+    <div class="chatbot-header">
+      <div class="chatbot-title">
+        <div class="chatbot-avatar"><i class="bi bi-robot"></i></div>
+        <div>
+          <strong>مساعد بصمة حياة</strong>
+          <span class="chatbot-status"><span class="status-dot"></span>متصل</span>
+        </div>
+      </div>
+      <button onclick="toggleChatbot()"><i class="bi bi-x-lg"></i></button>
+    </div>
+    <div id="chatMessages" class="chatbot-messages">
+      <div class="chat-msg bot-msg">
+        <div class="chat-bubble">مرحباً! 👋 أنا مساعدك الذكي لمشروع بصمة حياة. يمكنني مساعدتك في فهم الأنشطة التعليمية، الإعاقة العقلية، والمهارات الحياتية. كيف أساعدك؟</div>
+      </div>
+    </div>
+    <div class="chatbot-input-row">
+      <input type="text" id="chatInput" placeholder="اكتب سؤالك هنا..." onkeydown="if(event.key==='Enter') sendChatMsg()" />
+      <button onclick="sendChatMsg()" id="chatSendBtn"><i class="bi bi-send-fill"></i></button>
+    </div>
+    <div class="chatbot-footer">مدعوم بـ Gemini AI</div>
+  </div>
+
+  <!-- ====== TTS READER — دائري ====== -->
+  <div id="ttsBar" class="tts-bar">
+    <div class="tts-center">
+      <span id="ttsLabel" class="tts-label">القارئ الصوتي</span>
+      <div class="tts-progress-wrap">
+        <div id="ttsProgressBar" class="tts-progress-inner"></div>
+      </div>
+    </div>
+    <div class="tts-actions">
+      <button class="tts-btn-stop" onclick="ttsStop()" title="إيقاف">
+        <i class="bi bi-stop-fill"></i>
+      </button>
+    </div>
+    <div class="tts-icon-wrap" onclick="ttsToggle()" id="ttsPlayBtn" title="القارئ الصوتي">
+      <i class="bi bi-volume-up-fill" id="ttsPlayIcon"></i>
+    </div>
+  </div>
+
 
 </div><!-- end mainSite -->
 
