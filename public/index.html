@@ -22,7 +22,7 @@
       <img src="splash_hero.png" alt="الإعاقة إعاقة الفكر" class="splash-hero-img" />
     </div>
 
-    <div class="splash-text-box">
+    <div class="splash-text-box" style="margin-top: 1.5rem;">
       <div class="splash-bismillah">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</div>
       <h1 class="splash-title">بصمة حياة</h1>
       <div class="splash-desc">
@@ -63,8 +63,8 @@
           <li class="nav-item"><a class="nav-link" href="#about">عن المشروع</a></li>
           <li class="nav-item"><a class="nav-link" href="#features">المحاور</a></li>
           <li class="nav-item"><a class="nav-link" href="#goals">الأهداف</a></li>
-          <li class="nav-item"><a class="nav-link" href="#bags">الحقائب</a></li>
           <li class="nav-item"><a class="nav-link" href="#scales">المقاييس</a></li>
+          <li class="nav-item"><a class="nav-link" href="#bags">الحقائب</a></li>
           <li class="nav-item"><a class="nav-link" href="#team">الفريق</a></li>
           <li class="nav-item"><a class="nav-link" href="#contact">تواصل</a></li>
           <li class="nav-item"><a class="nav-link nav-admin" href="#" onclick="openAdminPanel()"><i class="bi bi-shield-lock me-1"></i>الإدارة</a></li>
@@ -114,7 +114,7 @@
         <div class="col-6 col-md-3"><div class="stat-item"><div class="stat-num">٣</div><div class="stat-label">محاور رئيسية</div></div></div>
         <div class="col-6 col-md-3"><div class="stat-item"><div class="stat-num">١٢+</div><div class="stat-label">هدف تعليمي</div></div></div>
         <div class="col-6 col-md-3"><div class="stat-item"><div class="stat-num">١٠٠٪</div><div class="stat-label">شامل وميسر</div></div></div>
-        <div class="col-6 col-md-3"><div class="stat-item"><div class="stat-num">٢٠٢٥</div><div class="stat-label">برنامج إعداد المعلم</div></div></div>
+        <div class="col-6 col-md-3"><div class="stat-item"><div class="stat-num">٢٠٢٥/٢٦</div><div class="stat-label">برنامج إعداد المعلم</div></div></div>
       </div>
     </div>
   </section>
@@ -129,7 +129,7 @@
             <div class="about-img-card">
               <img src="splash.png" alt="بصمة حياة" style="width:100%;border-radius:12px;margin-bottom:1rem;" />
               <h4 class="mt-2 mb-1">بصمة حياة</h4>
-              <p class="text-muted small">مشروع تخرج — ٢٠٢٥</p>
+              <p class="text-muted small">مشروع تخرج — ٢٠٢٥/٢٠٢٦</p>
               <hr class="my-3 accent-line" />
               <p class="small text-muted mb-0 lh-lg">
                 جامعة بنها — كلية التربية النوعية<br />
@@ -230,6 +230,20 @@
   </section>
 
 
+  <!-- SCALES PAGE LINK -->
+  <section class="scales-banner py-5" id="scales">
+    <div class="container">
+      <div class="scales-card" data-aos="zoom-in">
+        <div class="scales-icon"><i class="bi bi-clipboard2-pulse"></i></div>
+        <div class="scales-text">
+          <h3>المقاييس التربوية</h3>
+          <p>اطلع على المقاييس المعتمدة لتقييم مستوى الأطفال ذوي الإعاقة العقلية ومتابعة تطورهم</p>
+        </div>
+        <a href="scales.html" class="btn btn-scales">عرض المقاييس <i class="bi bi-arrow-left ms-2"></i></a>
+      </div>
+    </div>
+  </section>
+
   <!-- ====== BAGS SECTION ====== -->
   <section class="section-light py-section" id="bags">
     <div class="container">
@@ -241,45 +255,32 @@
 
       <!-- حقيبة 1 -->
       <div class="bag-container mb-5" data-aos="fade-up">
-        <div class="bag-header">
+        <div class="bag-header bag-toggle" onclick="toggleBag('bag1Grid', this)" style="cursor:pointer;">
           <div class="bag-icon"><i class="bi bi-bag-heart-fill"></i></div>
-          <div>
+          <div class="flex-grow-1">
             <h3 class="bag-title">الحقيبة الأولى</h3>
             <p class="bag-subtitle">رحلة المهارات الحياتية</p>
           </div>
+          <div class="bag-toggle-icon ms-auto"><i class="bi bi-chevron-up"></i></div>
         </div>
-        <div class="row g-4" id="bag1Grid">
+        <div class="row g-4 bag-activities" id="bag1Grid">
           <!-- Activities injected by JS -->
         </div>
       </div>
 
       <!-- حقيبة 2 -->
       <div class="bag-container" data-aos="fade-up" data-aos-delay="100">
-        <div class="bag-header">
+        <div class="bag-header bag-toggle" onclick="toggleBag('bag2Grid', this)" style="cursor:pointer;">
           <div class="bag-icon bag-icon-2"><i class="bi bi-bag-fill"></i></div>
-          <div>
+          <div class="flex-grow-1">
             <h3 class="bag-title">الحقيبة الثانية</h3>
             <p class="bag-subtitle">عبّر وأتفاعل</p>
           </div>
+          <div class="bag-toggle-icon ms-auto"><i class="bi bi-chevron-up"></i></div>
         </div>
-        <div class="row g-4" id="bag2Grid">
+        <div class="row g-4 bag-activities" id="bag2Grid">
           <!-- Activities injected by JS -->
         </div>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- SCALES PAGE LINK -->
-  <section class="scales-banner py-5" id="scales">
-    <div class="container">
-      <div class="scales-card" data-aos="zoom-in">
-        <div class="scales-icon"><i class="bi bi-clipboard2-pulse"></i></div>
-        <div class="scales-text">
-          <h3>المقاييس التربوية</h3>
-          <p>اطلع على المقاييس المعتمدة لتقييم مستوى الأطفال ذوي الإعاقة العقلية ومتابعة تطورهم</p>
-        </div>
-        <a href="scales.html" class="btn btn-scales">عرض المقاييس <i class="bi bi-arrow-left ms-2"></i></a>
       </div>
     </div>
   </section>
@@ -359,7 +360,7 @@
             <div>
               <h4 class="mb-1">جامعة بنها — كلية التربية النوعية</h4>
               <p class="text-muted small mb-0">برنامج إعداد معلم لذوي الاحتياجات الخاصة — مسار الإعاقة العقلية</p>
-              <p class="text-muted small mb-0">الفرقة الرابعة — ٢٠٢٥</p>
+              <p class="text-muted small mb-0">الفرقة الرابعة — ٢٠٢٥/٢٠٢٦</p>
             </div>
           </div>
         </div>
@@ -476,7 +477,7 @@
           </div>
         </div>
         <div class="col-md-4 text-center mb-3 mb-md-0">
-          <p class="small text-white-50 mb-0">© ٢٠٢٥ — كلية التربية النوعية · جامعة بنها</p>
+          <p class="small text-white-50 mb-0">© ٢٠٢٥/٢٠٢٦ — كلية التربية النوعية · جامعة بنها</p>
         </div>
         <div class="col-md-4 text-center text-md-start">
           <div class="footer-social d-flex gap-2 justify-content-center justify-content-md-start">
@@ -566,8 +567,24 @@
         <label class="form-label">رابط يوتيوب</label>
         <input type="url" id="videoUrl" class="form-control custom-input" placeholder="https://www.youtube.com/watch?v=..." />
       </div>
-      <button class="btn btn-hero-primary w-100 mb-4" onclick="addVideo()"><i class="bi bi-plus-circle me-2"></i>إضافة الفيديو</button>
-      
+      <button class="btn btn-hero-primary w-100 mb-5" onclick="addVideo()"><i class="bi bi-plus-circle me-2"></i>إضافة الفيديو</button>
+
+      <hr class="my-4" />
+      <h5 class="mb-4"><i class="bi bi-clipboard2-pulse me-2 text-primary"></i>إضافة مقياس تربوي</h5>
+      <div class="mb-3">
+        <label class="form-label">اسم المقياس</label>
+        <input type="text" id="scaleTitle" class="form-control custom-input" placeholder="مثال: مقياس المهارات الاجتماعية" />
+      </div>
+      <div class="mb-3">
+        <label class="form-label">وصف المقياس</label>
+        <input type="text" id="scaleDesc" class="form-control custom-input" placeholder="وصف مختصر..." />
+      </div>
+      <div class="mb-4">
+        <label class="form-label">رابط ملف المقياس (PDF أو رابط)</label>
+        <input type="url" id="scaleUrl" class="form-control custom-input" placeholder="https://..." />
+      </div>
+      <button class="btn btn-hero-primary w-100 mb-4" onclick="addScale()"><i class="bi bi-plus-circle me-2"></i>إضافة المقياس</button>
+
       <h5 class="mb-3"><i class="bi bi-list-ul me-2 text-primary"></i>الفيديوهات الحالية</h5>
       <div id="adminVideoList"></div>
     </div>
@@ -576,6 +593,36 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>
+// ====== BAG COLLAPSE TOGGLE ======
+function toggleBag(gridId, headerEl) {
+  const grid = document.getElementById(gridId);
+  const icon = headerEl.querySelector('.bag-toggle-icon i');
+  if (!grid) return;
+  if (grid.classList.contains('bag-collapsed')) {
+    grid.classList.remove('bag-collapsed');
+    if (icon) { icon.classList.remove('bi-chevron-down'); icon.classList.add('bi-chevron-up'); }
+  } else {
+    grid.classList.add('bag-collapsed');
+    if (icon) { icon.classList.remove('bi-chevron-up'); icon.classList.add('bi-chevron-down'); }
+  }
+}
+
+// ====== ADD SCALE (ADMIN) ======
+function addScale() {
+  const title = document.getElementById('scaleTitle').value.trim();
+  const desc = document.getElementById('scaleDesc').value.trim();
+  const url = document.getElementById('scaleUrl').value.trim();
+  if (!title || !url) { alert('يرجى إدخال اسم المقياس والرابط'); return; }
+  const scales = JSON.parse(localStorage.getItem('basmeh_scales') || '[]');
+  scales.push({ title, desc, url, id: Date.now() });
+  localStorage.setItem('basmeh_scales', JSON.stringify(scales));
+  document.getElementById('scaleTitle').value = '';
+  document.getElementById('scaleDesc').value = '';
+  document.getElementById('scaleUrl').value = '';
+  alert('تم إضافة المقياس بنجاح!');
+}
+</script>
 <script src="main.js"></script>
 </body>
 </html>
